@@ -5,6 +5,7 @@ go get -u github.com/gin-gonic/gin # Gin Backend Framework
 go get -u gorm.io/gorm # GORM for working with PostgreSQL Database
 go get -u gorm.io/driver/postgres # GORM driver for PostgreSQL
 go get github.com/joho/godotenv # For loading env variables in Golang
+go get golang.org/x/crypto/bcrypt # bcrypt for password hashing
 ```
 
 ## Hot reload

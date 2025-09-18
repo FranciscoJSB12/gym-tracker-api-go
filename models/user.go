@@ -2,8 +2,8 @@ package models
 
 type User struct {
 	ID       int64
-	Email    string  `binding:"required"`
-	Password string  `binding:"required"`
-	Name     string  `binding:"required"`
-	HeightCM float64 `binding:"required"`
+	Email    string  `gorm:"type:varchar(255);uniqueIndex;not null"`
+	Password string  `gorm:"type:varchar(255);not null"`
+	Name     string  `gorm:"type:varchar(255);not null"`
+	HeightCM float64 `gorm:"not null"`
 }
