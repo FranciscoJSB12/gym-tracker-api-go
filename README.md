@@ -6,6 +6,7 @@ go get -u gorm.io/gorm # GORM for working with PostgreSQL Database
 go get -u gorm.io/driver/postgres # GORM driver for PostgreSQL
 go get github.com/joho/godotenv # For loading env variables in Golang
 go get golang.org/x/crypto/bcrypt # bcrypt for password hashing
+go get github.com/golang-jwt/jwt/v5 # JWT for json web tokens
 ```
 
 ## Hot reload
