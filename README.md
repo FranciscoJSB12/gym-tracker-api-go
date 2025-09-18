@@ -23,3 +23,7 @@ https://github.com/air-verse/air
 ## Local db
 
 - Run `docker compose up -d`
+
+## Go version
+
+go1.25.0 linux/amd64
