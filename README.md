@@ -1,3 +1,7 @@
+## Go version
+
+go1.25.0 linux/amd64
+
 ## Main dependencies
 
 ```
@@ -22,10 +26,21 @@ https://github.com/air-verse/air
 
 - Everytime you create a model or change one: `go run migrate/migrate.go`
 
-## Local db
+## Build docker image
 
-- Run `docker compose up -d`
+```
+docker build -t gym-tracker-server .
+```
 
-## Go version
+## Run Local db
 
-go1.25.0 linux/amd64
+```
+docker compose -f docker-compose.dev.yml up -d
+```
+
+## Run prd version
+
+```
+docker compose -f docker-compose.prd.yml up -d
+```
+

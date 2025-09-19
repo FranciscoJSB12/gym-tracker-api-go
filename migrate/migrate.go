@@ -3,11 +3,10 @@ package main
 import (
 	"github.com/FranciscoJSB12/gym-tracker-api-go/db"
 	"github.com/FranciscoJSB12/gym-tracker-api-go/models"
-	"github.com/FranciscoJSB12/gym-tracker-api-go/utils"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func init() {
-	utils.LoadEnvVariables()
 	db.InitDB()
 }
 

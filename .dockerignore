@@ -1,0 +1,9 @@
+tmp
+docker-compose.dev.yml
+README.md
+.git
+.gitignore
+.air.toml
+.env.template
+.env
+migrate
