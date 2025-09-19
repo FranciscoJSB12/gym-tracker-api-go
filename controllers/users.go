@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/FranciscoJSB12/gym-tracker-api-go/db"
+	"github.com/FranciscoJSB12/gym-tracker-api-go/dtos"
 	"github.com/FranciscoJSB12/gym-tracker-api-go/models"
 	"github.com/FranciscoJSB12/gym-tracker-api-go/utils"
 	"github.com/gin-gonic/gin"
@@ -11,64 +12,98 @@ import (
 
 func SignUp(context *gin.Context) {
 	var user models.User
-	err := context.ShouldBindJSON(&user)
 
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data", "ok": false})
+	if err := context.ShouldBindJSON(&user); err != nil {
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusBadRequest,
+			Message: "Could not parse request data",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
 	hashedPassword, err := utils.HashPassword(user.Password)
-
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not sign up user", "ok": false})
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusInternalServerError,
+			Message: "Something went wrong while signing you up!",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
-
 	user.Password = hashedPassword
 
-	result := db.DB.Create(&user)
-
-	if result.Error != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not sign up user", "ok": false})
+	if result := db.DB.Create(&user); result.Error != nil {
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusInternalServerError,
+			Message: "Something went wrong while signing you up!",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"message": "User signed up successfully", "ok": true})
+	utils.Respond(context, &dtos.Response{
+		Status:  http.StatusCreated,
+		Message: "User signed up successfully",
+		Ok:      true,
+		Data:    nil,
+	})
 }
 
 func Login(context *gin.Context) {
 	var user models.User
-	err := context.ShouldBindJSON(&user)
 
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data", "ok": false})
+	if err := context.ShouldBindJSON(&user); err != nil {
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusBadRequest,
+			Message: "Could not parse request data",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
 	enteredPassword := user.Password
 	enteredEmail := user.Email
 
-	result := db.DB.Where("email = ?", enteredEmail).First(&user)
-
-	if result.Error != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not log user in", "ok": false})
+	if result := db.DB.Where("email = ?", enteredEmail).First(&user); result.Error != nil {
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusBadRequest,
+			Message: "Invalid credentials",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
-	isPasswordValid := utils.CheckPasswordHash(enteredPassword, user.Password)
-
-	if !isPasswordValid {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not log user in", "ok": false})
+	if isPasswordValid := utils.CheckPasswordHash(enteredPassword, user.Password); !isPasswordValid {
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusBadRequest,
+			Message: "Invalid credentials",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
-	token, err := utils.GenerateToken(user.Email, user.ID)
-
+	token, err := utils.GenerateToken(user.Email, int64(user.ID))
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not log user in", "ok": false})
+		utils.Respond(context, &dtos.Response{
+			Status:  http.StatusInternalServerError,
+			Message: "Something went wrong while logging you in!",
+			Ok:      false,
+			Data:    nil,
+		})
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"message": "Login successful", "ok": true, "token": token})
+	utils.Respond(context, &dtos.Response{
+		Status:  http.StatusOK,
+		Message: "Login successful!",
+		Ok:      true,
+		Data:    gin.H{"token": token},
+	})
 }

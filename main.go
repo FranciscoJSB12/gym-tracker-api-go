@@ -16,6 +16,7 @@ func main() {
 	server := gin.Default()
 
 	routes.RegisterUserRoutes(server)
+	routes.RegisterRoutineRoutes(server)
 
 	server.Run()
 }
