@@ -18,6 +18,8 @@ func main() {
 	routes.RegisterUserRoutes(server)
 	routes.RegisterRoutineRoutes(server)
 	routes.RegisterExerciseRoutes(server)
+	routes.RegisterProgressHistoryRoutes(server)
+	routes.RegisterWeightHistoryRoutes(server)
 
 	server.Run()
 }
