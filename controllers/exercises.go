@@ -76,10 +76,21 @@ func GetAllExercisesByRoutine(context *gin.Context) {
 		return
 	}
 
+	var exerciseResponses []dtos.ExerciseResponse
+
+	for _, exercise := range exercises {
+		exerciseResponses = append(exerciseResponses, dtos.ExerciseResponse{
+			ID:             exercise.ID,
+			Name:           exercise.Name,
+			RoutineID:      exercise.RoutineID,
+			ProposedRounds: exercise.ProposedRounds,
+		})
+	}
+
 	utils.Respond(context, &dtos.Response{
 		Status:  http.StatusOK,
 		Message: "Exercises retrieved successfully",
 		Ok:      true,
-		Data:    exercises,
+		Data:    exerciseResponses,
 	})
 }
