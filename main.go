@@ -17,6 +17,7 @@ func main() {
 
 	routes.RegisterUserRoutes(server)
 	routes.RegisterRoutineRoutes(server)
+	routes.RegisterExerciseRoutes(server)
 
 	server.Run()
 }
