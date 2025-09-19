@@ -22,7 +22,7 @@ func Authenticate(context *gin.Context) {
 		return
 	}
 
-	context.Set("userId", userId)
+	context.Set("userID", uint(userId))
 
 	context.Next()
 }

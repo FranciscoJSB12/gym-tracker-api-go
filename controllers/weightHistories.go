@@ -42,8 +42,7 @@ func CreateWeightHistory(context *gin.Context) {
 }
 
 func GetAllWeightHistoryByUser(context *gin.Context) {
-	// userID := context.GetUint("userID")
-	userID := 6
+	userID := context.GetUint("userID")
 
 	var weightHistory []models.WeightHistory
 

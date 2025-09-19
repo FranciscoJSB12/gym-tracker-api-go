@@ -6,9 +6,9 @@ import (
 )
 
 func RegisterUserRoutes(server *gin.Engine) {
-	userGroup := server.Group("/users")
-	{
-		userGroup.POST("/sign-up", controllers.SignUp)
-		userGroup.POST("/login", controllers.Login)
-	}
+	group := server.Group("/users")
+
+	group.POST("/sign-up", controllers.SignUp)
+	group.POST("/login", controllers.Login)
+
 }

@@ -42,8 +42,7 @@ func CreateRoutine(context *gin.Context) {
 }
 
 func GetAllRoutinesByUser(context *gin.Context) {
-	// userID := context.GetUint("userID")
-	userID := 6
+	userID := context.GetUint("userID")
 
 	var routines []models.Routine
 
