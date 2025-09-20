@@ -11,7 +11,11 @@ import (
 )
 
 func CreateRoutine(context *gin.Context) {
+	userID := context.GetUint("userID")
+
 	var routine models.Routine
+
+	routine.UserID = userID
 
 	if err := context.ShouldBindJSON(&routine); err != nil {
 		utils.Respond(context, &dtos.Response{
