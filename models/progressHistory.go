@@ -5,8 +5,8 @@ import (
 )
 
 type ProgressHistory struct {
-	ID         uint      `gorm:"primaryKey"`
-	ExerciseID uint      `gorm:"not null"` // Foreign key
-	WeightUsed float32   `gorm:"not null"`
-	Date       time.Time `gorm:"not null"`
+	ID           uint      `gorm:"primaryKey"`
+	ExerciseID   uint      `gorm:"not null"` // Foreign key
+	WeightUsedKG float32   `gorm:"not null"`
+	Date         time.Time `gorm:"not null"`
 }

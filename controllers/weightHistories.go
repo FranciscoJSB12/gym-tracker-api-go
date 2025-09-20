@@ -11,6 +11,8 @@ import (
 )
 
 func CreateWeightHistory(context *gin.Context) {
+	userID := context.GetUint("userID")
+
 	var weightHistory models.WeightHistory
 
 	if err := context.ShouldBindJSON(&weightHistory); err != nil {
@@ -22,6 +24,8 @@ func CreateWeightHistory(context *gin.Context) {
 		})
 		return
 	}
+
+	weightHistory.UserID = userID
 
 	if result := db.DB.Create(&weightHistory); result.Error != nil {
 		utils.Respond(context, &dtos.Response{

@@ -84,6 +84,7 @@ func GetAllExercisesByRoutine(context *gin.Context) {
 			Name:           exercise.Name,
 			RoutineID:      exercise.RoutineID,
 			ProposedRounds: exercise.ProposedRounds,
+			Repetitions:    exercise.Repetitions,
 		})
 	}
 
