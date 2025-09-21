@@ -29,18 +29,12 @@ https://github.com/air-verse/air
 ## Build docker image
 
 ```
-docker build -t gym-tracker-server .
+docker build -t fjsb12/gym-tracker-api .
 ```
 
 ## Run Local db
 
 ```
-docker compose -f docker-compose.dev.yml up -d
-```
-
-## Run prd version
-
-```
-docker compose -f docker-compose.prd.yml up -d
+docker compose up -d
 ```
 

@@ -2,13 +2,13 @@
 
 ### Sign up
 
-curl --location 'localhost:3000/users/login' \
+curl --location 'localhost:3000/users/sign-up' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email": "",
     "password": "",
     "name": "Francisco",
-    "height": 175.00
+    "heightCM": 175.00
 }'
 
 ### Login 
@@ -23,7 +23,7 @@ curl --location 'localhost:3000/users/login' \
 ### Create routine by user
 
 curl --location 'localhost:3000/routines' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzOTAxNzIsInVzZXJJZCI6MX0.ym4pSOrYO6MTdA9YomGbDIX2fJs1HLmcP64JQvWwwxM' \
+--header 'Authorization: ' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "Rutina de femoral"
@@ -32,12 +32,12 @@ curl --location 'localhost:3000/routines' \
 ### Get routines by user
 
 curl --location 'localhost:3000/routines' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzMzczMTQsInVzZXJJZCI6MX0.2fce5g4pVGeSwdb82__W22iIoWjpmWqpAIpR0ummAjI'
+--header 'Authorization: '
 
 ### Create exercise by user
 
 curl --location 'localhost:3000/exercises' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzMzczMTQsInVzZXJJZCI6MX0.2fce5g4pVGeSwdb82__W22iIoWjpmWqpAIpR0ummAjI' \
+--header 'Authorization: ' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "Dominadas",
@@ -49,28 +49,30 @@ curl --location 'localhost:3000/exercises' \
 ### Get execises by user
 
 curl --location 'localhost:3000/exercises/routine/2' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzMzczMTQsInVzZXJJZCI6MX0.2fce5g4pVGeSwdb82__W22iIoWjpmWqpAIpR0ummAjI'
+--header 'Authorization: '
 
 ### Create progress history by exercise
 
 curl --location 'localhost:3000/progress-histories' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzMzczMTQsInVzZXJJZCI6MX0.2fce5g4pVGeSwdb82__W22iIoWjpmWqpAIpR0ummAjI' \
+--header 'Authorization: ' \
 --header 'Content-Type: application/json' \
 --data '{
     "exerciseID": 1,
     "weightUsedKG": 65.2,
-    "date": "2025-09-20T01:15:03.177Z"
+    "date": "2025-09-20T01:15:03.177Z",
+    "repsDone": 12,
+    "roundsDone": 4
 }'
 
 ## Get progress history by exercise
 
 curl --location 'localhost:3000/progress-histories/exercise/1' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzOTAxNzIsInVzZXJJZCI6MX0.ym4pSOrYO6MTdA9YomGbDIX2fJs1HLmcP64JQvWwwxM'
+--header 'Authorization: '
 
 ### Create weight history by user
 
-curl --location 'localhost:3000/weight-histories' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzNDQ3MTYsInVzZXJJZCI6MX0.BLcDDs2g9j-mvBwDVBF1jIQ8U9y8-e6bDWTRmGKXa6U' \
+curl --location 'localhost:3000/weight-histories/user' \
+--header 'Authorization: ' \
 --header 'Content-Type: application/json' \
 --data '{
     "weightKG": 65.2,
@@ -79,5 +81,5 @@ curl --location 'localhost:3000/weight-histories' \
 
 ## Get weight history by user
 
-curl --location 'localhost:3000/weight-histories' \
---header 'Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphdmlmOEBnbWFpbC5jb20iLCJleHAiOjE3NTgzNDQ3MTYsInVzZXJJZCI6MX0.BLcDDs2g9j-mvBwDVBF1jIQ8U9y8-e6bDWTRmGKXa6U'
+curl --location 'localhost:3000/weight-histories/user' \
+--header 'Authorization: '
