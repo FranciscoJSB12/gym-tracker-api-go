@@ -2,6 +2,6 @@ package dtos
 
 type RoutineResponse struct {
 	ID     uint   `json:"id"`
-	UserID uint   `json:"user_id"`
+	UserID uint   `json:"userID"`
 	Name   string `json:"name"`
 }

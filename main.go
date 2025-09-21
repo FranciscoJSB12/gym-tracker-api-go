@@ -16,11 +16,7 @@ func init() {
 func main() {
 	server := gin.Default()
 
-	routes.RegisterUserRoutes(server)
-	routes.RegisterRoutineRoutes(server)
-	routes.RegisterExerciseRoutes(server)
-	routes.RegisterProgressHistoryRoutes(server)
-	routes.RegisterWeightHistoryRoutes(server)
+	routes.RegisterAppRoutes(server)
 
 	log.Println("Server is running!")
 	err := server.Run()
