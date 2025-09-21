@@ -10,8 +10,8 @@ type ProgressHistory struct {
 	ID           uint      `gorm:"primaryKey" json:"id"`
 	ExerciseID   uint      `gorm:"not null" json:"exerciseID"` // Foreign key
 	WeightUsedKG float32   `gorm:"not null" json:"weightUsedKG"`
-	RepsDone     uint      `gorm:"not null;default 0" json:"repsDone"`
-	RoundsDone   uint      `gorm:"not null;default 0" json:"roundsDone"`
+	RepsDone     uint      `gorm:"default:0" json:"repsDone"`
+	RoundsDone   uint      `gorm:"default:0" json:"roundsDone"`
 	Date         time.Time `gorm:"not null" json:"date"`
 }
 
